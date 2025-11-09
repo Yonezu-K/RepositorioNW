@@ -2,4 +2,65 @@
     <section class="deplth-2">
         <h2>{{mode}}</h2>
     </section>
+    {{if hasErrors}}
+        <ul class="error">
+        {{foreach errores}}
+            <li>{{this}}</li>
+        {{endfor errores}}
+        </ul>
+    {{endfor hasErrors}}
+    <form action="index.php?page=Mantenimientos-Cliente&mode={{mode}}&codigo={{codigo}}" method="POST">
+        <div>
+            <label for="codigo">Codigo</label>
+            <input type="text" name="codigo" id="codigo" value="{{codigo}}" {{codigoReadonly}}/>
+            <input type="hidden" name="vlt" value="{{token}}" />
+        </div>
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" value="{{nombre}}" {{readonly}}/>
+        </div>
+        <div>
+            <label for="direccion">Direccion</label>
+            <input type="text" name="direccion" id="direccion" value="{{direccion}}" {{readonly}}/>
+        </div>
+        <div>
+            <label for="telefono">Telefono</label>
+            <input type="text" name="telefono" id="telefono" value="{{telefono}}" {{readonly}}/>
+        </div>
+        <div>
+            <label for="correo">Correo</label>
+            <input type="text" name="correo" id="correo" value="{{correo}}" {{readonly}}/>
+        </div>
+        <div>
+            <label for="estado">Estado</label>
+            {{ifnot readonly}}
+                <select name="estado" id="estado" >
+                    <option value="ACT" {{selectedACT}}>Activo</option>
+                    <option value="INA" {{selectedINA}}>Inactivo</option>
+                </select>
+            {{endfor readonly}}
+            {{if readonly}}
+                <input type="text" name="estado" id="estado" value="{{estado}}" {{readonly}}/>
+            {{endfor readonly}}
+        </div>
+        <div>
+            <label for="evaluacion">Evaluacion</label>
+            <input type="text" name="evaluacion" id="evaluacion" value="{{evaluacion}}" {{readonly}}/>
+        </div>
+        <div>
+            <button id="btnCancelar">Cancelar</button>
+            {{ifnot isDisplay}}
+                <button id="btnConfirmar" type="submit">Confirmar</button>
+            {{endfor isDisplay}}
+        </div>
+    </form>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+        document.getElementById("btnCancelar").addEventListener("click", (e)=>{
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            window.location.assign("index.php?page=Mantenimientos-Clientes");
+        })
+    });
+</script>
