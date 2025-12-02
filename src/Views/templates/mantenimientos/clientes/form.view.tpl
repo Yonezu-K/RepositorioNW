@@ -8,7 +8,7 @@
             <li>{{this}}</li>
         {{endfor errores}}
         </ul>
-    {{endfor hasErrors}}
+    {{endif hasErrors}}
     <form action="index.php?page=Mantenimientos-Cliente&mode={{mode}}&codigo={{codigo}}" method="POST">
         <div>
             <label for="codigo">Codigo</label>
@@ -38,10 +38,10 @@
                     <option value="ACT" {{selectedACT}}>Activo</option>
                     <option value="INA" {{selectedINA}}>Inactivo</option>
                 </select>
-            {{endfor readonly}}
+            {{endifnot readonly}}
             {{if readonly}}
                 <input type="text" name="estado" id="estado" value="{{estado}}" {{readonly}}/>
-            {{endfor readonly}}
+            {{endif readonly}}
         </div>
         <div>
             <label for="evaluacion">Evaluacion</label>
@@ -51,7 +51,7 @@
             <button id="btnCancelar">Cancelar</button>
             {{ifnot isDisplay}}
                 <button id="btnConfirmar" type="submit">Confirmar</button>
-            {{endfor isDisplay}}
+            {{endifnot isDisplay}}
         </div>
     </form>
 </section>

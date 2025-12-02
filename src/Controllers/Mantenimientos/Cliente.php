@@ -95,7 +95,7 @@ class Cliente extends PublicController
             );
         } catch (Exception $ex) {
             error_log($ex->getMessage());
-            Site::redirectToWithMsg(ClientesList, "Susedio un problema. Reitente nuevamente.");
+            Site::redirectToWithMsg(ClientesList, "Sucedió un problema. Reintente nuevamente.");
         }
     }
     private function page_init()
